@@ -456,7 +456,99 @@ h1 em {
 .contact h2 { max-width: 71rem; color: var(--champagne); }
 .contact__lead { max-width: 42rem; margin: 1.8rem 0 0; color: rgba(255,248,240,.68); font-size: clamp(1rem, 1.4vw, 1.18rem); line-height: 1.6; }
 .contact__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; margin-top: 2.3rem; }
-.contact__handle { margin-top: 2rem; color: rgba(255,248,240,.54); font-size: 0.78rem; border-bottom: 1px solid rgba(242,215,161,.25); }
+.contact-direct {
+  width: min(100%, 66rem);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(14rem, .78fr) minmax(28rem, 1.22fr);
+  text-align: left;
+  border: 1px solid rgba(242, 215, 161, .2);
+  background: rgba(16, 5, 14, .62);
+  box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, .18);
+}
+.contact-direct__copy {
+  padding: clamp(1.6rem, 3.5vw, 2.7rem);
+  border-right: 1px solid rgba(242, 215, 161, .16);
+}
+.contact-direct__eyebrow {
+  margin: 0;
+  color: var(--champagne-deep);
+  font-size: .66rem;
+  font-weight: 850;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.contact-direct h3 {
+  margin: .85rem 0 0;
+  color: var(--champagne);
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -.035em;
+}
+.contact-direct__copy > p:last-child {
+  margin: 1rem 0 0;
+  color: rgba(255, 248, 240, .62);
+  font-size: .86rem;
+  line-height: 1.55;
+}
+.contact-direct__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.contact-direct__link {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 2.8rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: clamp(1.45rem, 3vw, 2.3rem);
+  color: var(--porcelain);
+  transition: color 180ms ease, background 180ms ease;
+}
+.contact-direct__link + .contact-direct__link {
+  border-left: 1px solid rgba(242, 215, 161, .16);
+}
+.contact-direct__link:hover {
+  color: var(--plum-950);
+  background: var(--champagne);
+}
+.contact-direct__icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  display: grid;
+  place-items: center;
+  color: var(--champagne);
+  border: 1px solid rgba(242, 215, 161, .32);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+.contact-direct__link:hover .contact-direct__icon {
+  color: var(--plum-950);
+  border-color: rgba(33, 16, 31, .28);
+  transform: translateY(-2px);
+}
+.contact-direct__link small,
+.contact-direct__link strong {
+  display: block;
+}
+.contact-direct__link small {
+  color: rgba(255, 248, 240, .55);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.contact-direct__link strong {
+  margin-top: .35rem;
+  overflow-wrap: anywhere;
+  color: inherit;
+  font-size: clamp(.88rem, 1.35vw, 1.02rem);
+  line-height: 1.25;
+}
+.contact-direct__link:hover small { color: rgba(33, 16, 31, .6); }
 .site-footer { padding: 2.2rem var(--page-gutter); background: #10050e; border-top: 1px solid rgba(242,215,161,.12); }
 .site-footer__inner { width: min(100%, 96rem); margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: center; }
 .site-footer p { margin: 0; color: rgba(255,248,240,.42); font-size: 0.72rem; text-align: center; }
@@ -551,6 +643,8 @@ h1 em {
   .recognition__portrait { position: relative; top: auto; width: min(88%, 31rem); min-height: 0; margin: 0 auto; }
   .recognition__portrait img { height: auto; aspect-ratio: 4 / 5; object-position: 50% 24%; }
   .recognition h2 { max-width: 42rem; }
+  .contact-direct { grid-template-columns: 1fr; }
+  .contact-direct__copy { border-right: 0; border-bottom: 1px solid rgba(242, 215, 161, .16); }
   .site-footer__inner { grid-template-columns: 1fr; justify-items: center; }
 }
 
@@ -604,6 +698,8 @@ h1 em {
   .award--featured { padding: 1.45rem; }
   .award:not(.award--featured):hover { padding-inline: 0; background: transparent; }
   .contact__actions { width: 100%; display: grid; }
+  .contact-direct__actions { grid-template-columns: 1fr; }
+  .contact-direct__link + .contact-direct__link { border-left: 0; border-top: 1px solid rgba(242, 215, 161, .16); }
   .site-footer nav { flex-wrap: wrap; justify-content: center; }
   .contact-dialog { max-height: calc(100svh - 1rem); }
   .contact-form { padding: 1.35rem; }
