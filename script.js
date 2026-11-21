@@ -287,6 +287,32 @@ menuButton.addEventListener('click', () => {
 
 mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
+const programToggle = document.getElementById('ai-prinyatie-toggle');
+const programStages = document.getElementById('ai-prinyatie-stages');
+const programCollapse = document.getElementById('ai-prinyatie-collapse');
+
+function setDisclosureExpanded(button, content, expanded, expandedText, collapsedText) {
+  content.hidden = !expanded;
+  button.setAttribute('aria-expanded', String(expanded));
+  button.textContent = expanded ? expandedText : collapsedText;
+}
+
+if (programToggle && programStages && programCollapse) {
+  const setProgramExpanded = (expanded) => setDisclosureExpanded(
+    programToggle,
+    programStages,
+    expanded,
+    'Свернуть этапы программы',
+    'Посмотреть этапы программы'
+  );
+
+  programToggle.addEventListener('click', () => setProgramExpanded(programStages.hidden));
+  programCollapse.addEventListener('click', () => {
+    setProgramExpanded(false);
+    programToggle.focus();
+  });
+}
+
 document.querySelectorAll('[data-dialog-mode]').forEach((trigger) => {
   trigger.addEventListener('click', () => openContact(trigger.dataset.dialogMode || 'contact'));
 });
@@ -370,9 +396,7 @@ copyResultButton.addEventListener('click', async () => {
 if (reviewsMoreButton && reviewsMoreNote) {
   reviewsMoreButton.addEventListener('click', () => {
     const isExpanded = reviewsMoreButton.getAttribute('aria-expanded') === 'true';
-    reviewsMoreButton.setAttribute('aria-expanded', String(!isExpanded));
-    reviewsMoreNote.hidden = isExpanded;
-    reviewsMoreButton.textContent = isExpanded ? 'Посмотреть ещё отзывы' : 'Скрыть сообщение';
+    setDisclosureExpanded(reviewsMoreButton, reviewsMoreNote, !isExpanded, 'Скрыть сообщение', 'Посмотреть ещё отзывы');
   });
 }
 
