@@ -287,6 +287,22 @@ menuButton.addEventListener('click', () => {
 
 mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
+const programToggle = document.getElementById('ai-prinyatie-toggle');
+const programStages = document.getElementById('ai-prinyatie-stages');
+const programCollapse = document.getElementById('ai-prinyatie-collapse');
+
+function setProgramExpanded(expanded) {
+  programStages.hidden = !expanded;
+  programToggle.setAttribute('aria-expanded', String(expanded));
+  programToggle.textContent = expanded ? 'Свернуть этапы программы' : 'Посмотреть этапы программы';
+}
+
+programToggle.addEventListener('click', () => setProgramExpanded(programStages.hidden));
+programCollapse.addEventListener('click', () => {
+  setProgramExpanded(false);
+  programToggle.focus();
+});
+
 document.querySelectorAll('[data-dialog-mode]').forEach((trigger) => {
   trigger.addEventListener('click', () => openContact(trigger.dataset.dialogMode || 'contact'));
 });
